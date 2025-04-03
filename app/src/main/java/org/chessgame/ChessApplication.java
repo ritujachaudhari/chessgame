@@ -3,7 +3,11 @@
  */
 package org.chessgame;
 
+import org.chessgame.factory.ChessPieceFactory;
+import org.chessgame.model.ChessPiece;
 import org.chessgame.model.PieceType;
+
+import java.util.List;
 
 public class ChessApplication {
     public static void main(String[] args) {
@@ -16,5 +20,13 @@ public class ChessApplication {
         String pieceType = args[0];
         String position = args[1].toUpperCase();
         PieceType type = PieceType.valueOf(pieceType.toUpperCase());
+
+        try {
+            ChessPiece piece = ChessPieceFactory.createChessPiece(type, position);
+            List<String> possibleMoves = piece.getPossibleMoves();
+            System.out.println("Possible moves for " + pieceType + ": " + String.join(", ", possibleMoves));
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
 }

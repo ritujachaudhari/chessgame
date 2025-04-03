@@ -13,7 +13,7 @@ class KingTest {
         King king = new King("D5");
         List<String> actualResult = king.getPossibleMoves();
         List<String> expectedResult = List.of("C4","C5","C6","D4","D6","E4","E5","E6");
-        assertThat(actualResult.size()).isEqualTo(2);
+        assertThat(actualResult.size()).isEqualTo(expectedResult.size());
         assertThat(actualResult).containsExactlyInAnyOrderElementsOf(expectedResult);
     }
 
